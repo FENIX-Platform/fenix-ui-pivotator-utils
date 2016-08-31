@@ -1,0 +1,39 @@
+{
+  "name": "fenix-ui-pivotator-utils",
+  "version": "1.0.0-beta.0",
+  "description": "FENIX pivotator utils",
+  "main": "dist/fenix-ui-pivotator-utils.min.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/specs.js -w",
+    "build": "NODE_ENV=production webpack",
+    "build:develop": "NODE_ENV=develop webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FENIX-Platform/fenix-ui-pivotator-utils.git"
+  },
+  "keywords": [
+    "FENIX"
+  ],
+  "author": "Daniele Salvatore <daniele.salvatore@fao.org> (http://fenix.fao.org/)",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/FENIX-Platform/fenix-ui-pivotator-utils/issues"
+  },
+  "homepage": "https://github.com/FENIX-Platform/fenix-ui-pivotator-utils#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "clean-webpack-plugin": "^0.1.10",
+    "jshint": "^2.9.3",
+    "jshint-loader": "^0.8.3",
+    "mocha": "^3.0.2",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.0"
+  }
+}
