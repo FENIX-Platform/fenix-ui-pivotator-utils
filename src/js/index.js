@@ -10,7 +10,9 @@ define([
 		var FXmod;
 
 		function parseInput(FX, opt) {// FX.metadata.dsd,options
-			var ret = $.extend(true, {}, opt);
+			var ret = {};
+			_.extend(ret, opt);
+
 			var FXmod = convertFXDirty(FX, opt);
 
 			function getDimension()
