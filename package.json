@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha test/specs.js -w",
     "build": "NODE_ENV=production webpack",
-    "build:develop": "NODE_ENV=develop webpack"
+    "dev": "NODE_ENV=develop webpack"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "amdefine": "^1.0.0",
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.10",
     "jshint": "^2.9.3",

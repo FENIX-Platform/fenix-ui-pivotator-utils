@@ -35,7 +35,7 @@ module.exports = {
     },
 
     plugins: clearArray([
-        isDemo(undefined, new CleanWebpackPlugin([distFolderPath])),
+        new CleanWebpackPlugin([distFolderPath]),
         isProduction(new webpack.optimize.UglifyJsPlugin({
             compress: {warnings: false},
             output: {comments: false}
@@ -50,12 +50,12 @@ function getEntry() {
 
     switch (getEnvironment()) {
 
-        case "demo" :
+/*        case "demo" :
             entry["app"] = ["demo/src/js/demo.js"];
             break;
         case "develop" :
             entry["app"] = ["dev/src/js/dev.js"];
-            break;
+            break;*/
         default :
             entry["app"] = ["./src/js/index.js"];
     }
@@ -69,27 +69,14 @@ function getOutput() {
 
     switch (getEnvironment()) {
 
-        case "demo" :
-            output = {
-                path: Path.join(__dirname, demoFolderPath, distFolderPath),
-                filename: "index.js"
-            };
-            break;
         case "production" :
             output = {
                 path: Path.join(__dirname, distFolderPath),
                 filename: packageJson.name + '.min.js',
-                chunkFilename: 'chunk-[id].' + packageJson.name + '.min.js',
                 libraryTarget: 'amd'
             };
             break;
-        case "develop" :
-            output = {
-                path: Path.join(__dirname, devFolderPath, distFolderPath),
-                //publicPath: "/dev/",
-                filename: "index.js"
-            };
-            break;
+
         default :
             output = {
                 path: Path.join(__dirname, distFolderPath),
@@ -118,21 +105,6 @@ function clearArray(array) {
 function isProduction(valid, invalid) {
 
     return isEnvironment('production') ? valid : invalid;
-}
-
-function isDevelop(valid, invalid) {
-
-    return isEnvironment('develop') ? valid : invalid;
-}
-
-function isTest(valid, invalid) {
-
-    return isEnvironment('develop') ? valid : invalid;
-}
-
-function isDemo(valid, invalid) {
-
-    return isEnvironment('demo') ? valid : invalid;
 }
 
 function isEnvironment(env) {

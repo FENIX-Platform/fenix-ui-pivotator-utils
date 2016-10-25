@@ -1,3 +1,4 @@
+/*global define*/
 if (typeof define !== 'function') {
 	var define = require('amdefine')(module);
 }
@@ -5,7 +6,6 @@ if (typeof define !== 'function') {
 define([
 		"underscore"
 	], function (_) {
-
 
 		var FXmod;
 
@@ -79,7 +79,9 @@ define([
 		}
 
 		function convertFX(FX, opt) {
-			//console.log("FX", FX)
+
+			//check param not null
+			
 			var lang = "EN";
 			if (opt && opt.hasOwnProperty("lang")) {
 				lang = opt.lang;
@@ -305,7 +307,6 @@ define([
 
 			return structInter;
 		}
-
 
 		function initFXT(FX, opt) {//for Toolbar
 
