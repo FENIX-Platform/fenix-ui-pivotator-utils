@@ -66,7 +66,7 @@ define([
 					"showFlag": opt.showFlag || false,
 					"showUnit": opt.showUnit || false
 				};
-
+				console.log("ret!! ",ret)
 
 			}
 			if(ret.columns.length+ret.rows.length==0)
@@ -294,12 +294,24 @@ define([
 					structInter.attributes[i] = structDirty[i];
 					if ( structDirty[i].subject == "um") {
 
-						//console.log("strucInter",structInter,structDirty)
-						structInter.values.value.unit= structDirty[i].label || structDirty[i].value;
+						console.log("strucInter", structInter, structDirty)
+						//console.log("elem", structDirty[i])
+						// console.log("elem LABEL", structDirty[i].label)
+						// console.log("elem VALUE", structDirty[i].value)
+						if ((structInter.values.value != null) && (typeof structInter.values.value != 'undefined'))
+						{
+							console.log("IF!!!!")
+							structInter.values.value.unit= structDirty[i].label || structDirty[i].value;
+						}
+						else{
+							console.log("ELSE!!!!")
+							structInter.values.value = {};
+							structInter.values.value.unit= structDirty[i].label || structDirty[i].value;
+						}
+
 						//setDirty("value", "unit", myColumns.id);
 						//structInter.values[i].unit = structDirty[i];
 					}
-
 				}
 
 			}	//console.log("structInterDirty",structDirty,"structInter",structInter);
@@ -451,8 +463,8 @@ define([
 
 		function toFilter(model,opt) {
 
+			console.log("In toFilter!!!")
 			var fxt = initFXT(model.metadata.dsd);
-
 
 			var groupName= {
 				rows: "Rows",
@@ -653,7 +665,7 @@ define([
 		}
 
 		function toTableConfig(values) {
-			//console.log("toTableValue",values)
+			console.log("toTableValue",values)
 			var hidden = [];
 			var x = [];
 			var series = [];
