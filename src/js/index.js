@@ -201,9 +201,11 @@ define([
 
             for (var i in FX.columns) {
                 var myColumns = FX.columns[i];
+                var defaultLang = typeof myColumns.title === "object" ? Object.keys(myColumns.title)[0] : null;
+
                 if (myColumns.key == true) {//c est le code
                     setDirty(myColumns.id, "code", myColumns.id);
-                    setDirty(myColumns.id, "title", myColumns.title[lang] || myColumns.title["EN"] || myColumns.id);
+                    setDirty(myColumns.id, "title", myColumns.title[lang] || myColumns.title[defaultLang] || myColumns.id);
                     setDirty(myColumns.id, "type", "dimension");
                     if (myColumns.subject) {
                         setDirty(myColumns.id, "subject", myColumns.subject);
@@ -218,7 +220,7 @@ define([
 
                     setDirty("value", "type", "value");
                     setDirty("value", "value", myColumns.id);
-                    setDirty("value", "title", "value" || myColumns.title[lang] || myColumns.title["EN"] || myColumns.id);
+                    setDirty("value", "title", "value" || myColumns.title[lang] || myColumns.title[defaultLang] || myColumns.id);
 
                     if (myColumns.subject) {
                         setDirty("value", "subject", myColumns.subject);
@@ -260,7 +262,7 @@ define([
                         //setValue("value", "attribute", myColumns.id)
                         setDirty(myColumns.id, "type", "attribute");
                         setDirty(myColumns.id, "value", myColumns.id);
-                        setDirty(myColumns.id, "title", myColumns.title[lang] || myColumns.title["EN"] || myColumns.id);
+                        setDirty(myColumns.id, "title", myColumns.title[lang] || myColumns.title[defaultLang] || myColumns.id);
                         if (myColumns.subject) {
                             setDirty(myColumns.id, "subject", myColumns.subject);
                         }
