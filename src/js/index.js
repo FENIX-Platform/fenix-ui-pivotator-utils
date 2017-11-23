@@ -43,17 +43,17 @@ define([
                 if (opt.lang) {
                     lang = opt.lang;
                 }
-                var aggregations = [],
-                    hidden = [],
-                    columns = [],
+                // var aggregations = [],
+                //     hidden = [],
+                columns = [],
                     rows = [],
                     values = [];
 
                 ret = {
                     "inputFormat": "fenixTool",
                     "aggregationFn": opt.aggregationFn || {"value": "sum"},
-                    "aggregations": getListDim(opt.aggregations, opt, FXmod),
-                    "hidden": getListDim(opt.hidden, opt, FXmod),
+                    // "aggregations": getListDim(opt.aggregations, opt, FXmod),
+                    // "hidden": getListDim(opt.hidden, opt, FXmod),
                     "columns": getListDim(opt.columns, opt, FXmod),
                     "values": opt.values || "value",
                     "groupedRow": opt.groupedRow,
@@ -166,7 +166,6 @@ define([
                 }
             }
 //			for()
-            //console.log("structInter", structInter)
             return structInter;
         }
 
@@ -306,10 +305,10 @@ define([
 
             FXmod = FXmodnew;
 
-            var hidden = [];
+            //var hidden = [];
             var columns = [];
             var rows = [];
-            var aggregations = [];
+            //var aggregations = [];
             var values = [];
 
             for (var i in FXmod.dimensions) {
@@ -326,16 +325,16 @@ define([
             for (var i in FXmod.values) {
                 values.push({value: FXmod.values[i].value, label: FXmod.values[i].title});
             }
-            for (var i in FXmod.attributes) {
-
-                aggregations.push({value: FXmod.attributes[i].value, label: FXmod.attributes[i].title});
-            }
+            // for (var i in FXmod.attributes) {
+            //
+            //     aggregations.push({value: FXmod.attributes[i].value, label: FXmod.attributes[i].title});
+            // }
 
             var retObj = {
-                hidden: hidden,
+                //hidden: hidden,
                 rows: rows,
                 columns: columns,
-                aggregations: aggregations,
+                //aggregations: aggregations,
                 values: values
             }
             //           console.log(retObj)
@@ -448,8 +447,8 @@ define([
             var groupName = {
                 rows: "Rows",
                 columns: "Columns",
-                hidden: "Hidden",
-                aggregations: "Aggregation",
+                // hidden: "Hidden",
+                // aggregations: "Aggregation",
                 values: "Values"
             };
 
@@ -457,8 +456,8 @@ define([
                 groupName = {
                     rows: opt.rowLabel || "Rows",
                     columns: opt.columnsLabel || "Columns",
-                    hidden: opt.hiddenLabel || "Hidden",
-                    aggregations: opt.aggregationsLabel || "Aggregation",
+                    // hidden: opt.hiddenLabel || "Hidden",
+                    // aggregations: opt.aggregationsLabel || "Aggregation",
                     values: opt.valuesLabel || "Values"
                 }
             }
@@ -511,10 +510,10 @@ define([
                 }
             };
 
-            var aggregations = _.map(fxt.aggregations, function (item) {
-                    item.parent = "aggregations";
-                    return item
-                }),
+            var// aggregations = _.map(fxt.aggregations, function (item) {
+                //         item.parent = "aggregations";
+                //         return item
+                //     }),
                 columns = _.map(fxt.columns, function (item) {
                     item.parent = "columns";
                     return item
@@ -523,27 +522,28 @@ define([
                     item.parent = "rows";
                     return item
                 }),
-                hidden = _.map(fxt.hidden, function (item) {
-
-                    item.parent = "hidden";
-                    return item
-                }),
+                // hidden = _.map(fxt.hidden, function (item) {
+                //
+                //     item.parent = "hidden";
+                //     return item
+                // }),
                 values = _.map(fxt.values, function (item) {
                     item.parent = "values";
                     return item
                 });
 
-            configuration.dimensionsSort.selector.source = _.union(aggregations, hidden, columns, rows, values);
+            //configuration.dimensionsSort.selector.source = _.union(aggregations, hidden, columns, rows, values);
+            configuration.dimensionsSort.selector.source = _.union(columns, rows, values);
 
             return configuration
 
         }
 
         function toChartConfig(values) {
-            var hidden = [];
+            //var hidden = [];
             var x = [];
             var series = [];
-            var aggregations = [];
+            // var aggregations = [];
             var y = [];
             var type = Array.isArray(values.values.typeOfChart) ? values.values.typeOfChart[0] : "line";
             var aggValue = {
@@ -577,8 +577,8 @@ define([
                 else if (t.parent == "values") {
                     opt.y[t.value] = true
                 }
-                else if (t.parent == "hidden") {/* to decide what we want to do*/
-                }
+                // else if (t.parent == "hidden") {/* to decide what we want to do*/
+                // }
             }
 
 
@@ -608,9 +608,9 @@ define([
                     if (opt.showFlag == true && FXmod.values[i].flag) {
                         y.push(FXmod.values[i].flag)
                     }
-                    for (var h in FXmod.values[i].attribute) {
-                        hidden.push(FXmod.values[i].attribute[h])
-                    }
+                    // for (var h in FXmod.values[i].attribute) {
+                    //     hidden.push(FXmod.values[i].attribute[h])
+                    // }
                 }
             }
             for (var i in FXmod.attributes) {
@@ -631,10 +631,10 @@ define([
                 aggregationFn: aggValue,
                 formatter: "value",
                 decimals: 2,
-                hidden: hidden,
+                //hidden: hidden,
                 series: series,
                 x: x,
-                aggregations: aggregations,
+                //aggregations: aggregations,
                 y: y,
                 type: type
             };
@@ -646,10 +646,10 @@ define([
 
         function toTableConfig(values) {
             //console.log("toTableValue",values)
-            var hidden = [];
+            //var hidden = [];
             var x = [];
             var series = [];
-            var aggregations = [];
+            // var aggregations = [];
             var y = [];
             var formatter = values.values.format[0];
             //console.log("values",values)
@@ -686,8 +686,8 @@ define([
                 else if (t.parent == "values") {
                     opt.y[t.value] = true;
                 }
-                else if (t.parent == "hidden") {/* to decide what we want to do*/
-                }
+                // else if (t.parent == "hidden") {/* to decide what we want to do*/
+                // }
             }
 
             //console.log("FXmod", FXmod)
@@ -699,9 +699,9 @@ define([
 
                     if (/*opt.showCode == true &&*/ FXmod.dimensions[i].label != FXmod.dimensions[i].code && FXmod.dimensions[i].label != null) {
                         series.push(FXmod.dimensions[i].code);
-                        if (opt.showCode == false) {
-                            hidden.push(FXmod.dimensions[i].code);
-                        }
+                        // if (opt.showCode == false) {
+                        //     hidden.push(FXmod.dimensions[i].code);
+                        // }
                     }
                     else {
                     }
@@ -710,9 +710,9 @@ define([
                     x.push(FXmod.dimensions[i].label || FXmod.dimensions[i].code)
                     if (/*opt.showCode == true &&*/ FXmod.dimensions[i].label != FXmod.dimensions[i].code && FXmod.dimensions[i].label != null) {
                         x.push(FXmod.dimensions[i].code);
-                        if (opt.showCode == false) {
-                            hidden.push(FXmod.dimensions[i].code);
-                        }
+                        // if (opt.showCode == false) {
+                        //     hidden.push(FXmod.dimensions[i].code);
+                        // }
                     } else {
                     }
                 }
@@ -732,9 +732,9 @@ define([
                     if (opt.showFlag == true && FXmod.values[i].flag) {
                         y.push(FXmod.values[i].flag)
                     }
-                    for (var h in FXmod.values[i].attribute) {
-                        hidden.push(FXmod.values[i].attribute[h])
-                    }
+                    // for (var h in FXmod.values[i].attribute) {
+                    //     hidden.push(FXmod.values[i].attribute[h])
+                    // }
                 }
             }
 
@@ -758,10 +758,10 @@ define([
                 formatter: formatter,
                 decimals: values.values.decimals || 2,
                 showRowHeaders: true,
-                hidden: hidden,
+                //hidden: hidden,
                 rows: series,
                 columns: x,
-                aggregations: aggregations,
+                //aggregations: aggregations,
                 values: y
             }
             //console.log("rest",retObj)
