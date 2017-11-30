@@ -646,10 +646,10 @@ define([
 
         function toTableConfig(values) {
             //console.log("toTableValue",values)
-            //var hidden = [];
+            var hidden = [];
             var x = [];
             var series = [];
-            // var aggregations = [];
+            var aggregations = [];
             var y = [];
             var formatter = values.values.format[0];
             //console.log("values",values)
@@ -699,9 +699,9 @@ define([
 
                     if (/*opt.showCode == true &&*/ FXmod.dimensions[i].label != FXmod.dimensions[i].code && FXmod.dimensions[i].label != null) {
                         series.push(FXmod.dimensions[i].code);
-                        // if (opt.showCode == false) {
-                        //     hidden.push(FXmod.dimensions[i].code);
-                        // }
+                        if (opt.showCode == false) {
+                            hidden.push(FXmod.dimensions[i].code);
+                        }
                     }
                     else {
                     }
@@ -710,9 +710,9 @@ define([
                     x.push(FXmod.dimensions[i].label || FXmod.dimensions[i].code)
                     if (/*opt.showCode == true &&*/ FXmod.dimensions[i].label != FXmod.dimensions[i].code && FXmod.dimensions[i].label != null) {
                         x.push(FXmod.dimensions[i].code);
-                        // if (opt.showCode == false) {
-                        //     hidden.push(FXmod.dimensions[i].code);
-                        // }
+                        if (opt.showCode == false) {
+                            hidden.push(FXmod.dimensions[i].code);
+                        }
                     } else {
                     }
                 }
@@ -732,9 +732,9 @@ define([
                     if (opt.showFlag == true && FXmod.values[i].flag) {
                         y.push(FXmod.values[i].flag)
                     }
-                    // for (var h in FXmod.values[i].attribute) {
-                    //     hidden.push(FXmod.values[i].attribute[h])
-                    // }
+                    for (var h in FXmod.values[i].attribute) {
+                        hidden.push(FXmod.values[i].attribute[h])
+                    }
                 }
             }
 
@@ -758,10 +758,10 @@ define([
                 formatter: formatter,
                 decimals: values.values.decimals || 2,
                 showRowHeaders: true,
-                //hidden: hidden,
+                hidden: hidden,
                 rows: series,
                 columns: x,
-                //aggregations: aggregations,
+                aggregations: aggregations,
                 values: y
             }
             //console.log("rest",retObj)

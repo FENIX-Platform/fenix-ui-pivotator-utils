@@ -1,6 +1,6 @@
 {
   "name": "fenix-ui-pivotator-utils",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "FENIX pivotator utils",
   "main": "dist/fenix-ui-pivotator-utils.min.js",
   "directories": {
